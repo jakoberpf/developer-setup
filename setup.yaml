@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  vars_files:
+    - default.config.yaml
+
+  pre_tasks:
+    - include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/config.yaml"
+
+  roles:
+     - setup-tooling

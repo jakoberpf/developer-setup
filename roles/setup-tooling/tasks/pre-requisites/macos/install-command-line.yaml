@@ -1,0 +1,93 @@
+---
+
+- name: "[clt] Running on Mac OS X?"
+  fail:
+    msg: Target host is not running Mac OS X
+  when: ansible_distribution != 'MacOSX'
+
+- name: "[clt] set command line tools path"
+  set_fact:
+    clt_path: /Library/Developer/CommandLineTools
+
+- name: "[clt] Check that the Command Line Tools path is present"
+  stat:
+    path: '{{ clt_path }}'
+  register: clt
+
+- name: "[clt] Is the C++ compiler useable?"
+  command: g++ --version
+  register: compiler
+  check_mode: no
+  ignore_errors: true
+  changed_when: false
+
+- name: "[clt] Check the Command Line Tools package metadata"
+  command: pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+  register: pkg_info
+  check_mode: no
+  ignore_errors: true
+  changed_when: false
+
+- name: "[clt] Prepare to install Command Line Tools"
+  file:
+    path: /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+    state: touch
+  when: pkg_info.rc != 0 or compiler.rc != 0 or not clt.stat.exists
+
+- name: "[clt] Check for Command Line Tools in Software Update list (MacOS < 10.15)."
+  shell: >
+    set -o pipefail;
+    softwareupdate -l |
+    grep -B 1 -E 'Command Line Tools' |
+    awk -F'*' '/^ +\*/ {print $2}' |
+    sed 's/^ *//' |
+    grep -iE '[0-9|.]' |
+    sort |
+    tail -n1
+  args:
+    executable: /bin/bash
+  register: su_list_old
+  when:
+    - ansible_distribution_version is version('10.15', '<')
+    - pkg_info.rc != 0 or compiler.rc != 0 or not clt.stat.exists
+  changed_when: false
+  failed_when: su_list_old.rc != 0 or su_list_old.stdout|length == 0
+
+- name: "[clt] Check for Command Line Tools in Software Update list (MacOS >= 10.15)."
+  shell: >
+    set -o pipefail;
+    softwareupdate -l |
+    grep -B 1 -E 'Command Line Tools' |
+    awk -F'*' '/^\*/ {print $2}' |
+    sed 's/^ Label: //' |
+    grep -iE '[0-9|.]' |
+    sort |
+    tail -n1
+  args:
+    executable: /bin/bash
+  register: su_list_new
+  when:
+    - ansible_distribution_version is version('10.15', '>=')
+    - pkg_info.rc != 0 or compiler.rc != 0 or not clt.stat.exists
+  changed_when: false
+  failed_when: su_list_new.rc != 0 or su_list_new.stdout|length == 0
+
+- name: "[clt] Set su_list for (MacOS < 10.15)."
+  set_fact:
+    su_list: "{{ su_list_old }}"
+  when: su_list_old is not skipped
+
+- name: "[clt] Set su_list for (MacOS >= 10.15)."
+  set_fact:
+    su_list: "{{ su_list_new }}"
+  when: su_list_new is not skipped
+
+- name: "[clt] Install Command Line Tools"
+  command: softwareupdate -i '{{ su_list.stdout }}'
+  when: pkg_info.rc != 0 or compiler.rc != 0 or not clt.stat.exists
+  notify:
+    - Cleanup CommandLineTools Installation
+  register: su_result
+  failed_when: >-
+    su_result.rc != 0 or
+    'Error installing updates.' in su_result.stdout
