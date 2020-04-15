@@ -22,6 +22,12 @@ homebrew_installed_packages:
   - git
   - nmap
   - ssh-copy-id
+  - pyenv
+  - tfenv
+  - nvm
+  - jenv
+  - terraform-docs
+  - tflint
 
 homebrew_uninstalled_packages: []
 
@@ -37,6 +43,7 @@ homebrew_cask_apps:
   - licecap
   - atom
   - visual-studio-code
+  - intellij-idea
 
 homebrew_cask_uninstalled_apps: []
 

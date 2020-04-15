@@ -1,0 +1,6 @@
+---
+
+- name: "[gvm] Ensure necessary brew packages are installed."
+  homebrew:
+    name: mercurial
+    state: present

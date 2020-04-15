@@ -1,0 +1,23 @@
+---
+- include_tasks: ./retrieve-gpg-key.yaml
+
+- name: "[rvm] downloading RVM installer"
+  get_url:
+    url: "{{rvm_url}}"
+    dest: "{{rvm_temp_installer_path}}"
+
+- name: "[rvm] set executable RVM installer"
+  file:
+    path: "{{rvm_temp_installer_path}}"
+    mode: 0755
+
+- name: "[rvm] installing RVM as user"
+  command: "{{rvm_temp_installer_path}} --path {{rvm_root}} stable"
+
+- name: "[rvm] removing RVM installer"
+  file:
+    path: "{{rvm_temp_installer_path}}"
+    state: absent
+
+- name: "[rvm] setting RVM autolibs on as user"
+  command: "{{rvm_root}}/bin/rvm autolibs 3"

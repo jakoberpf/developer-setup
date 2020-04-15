@@ -1,0 +1,15 @@
+---
+- name: "[rvm] installing pre-requisites"
+  include_tasks: "pre-requisites/install-{{ ansible_os_family }}.yaml"
+
+- name: "[rvm] checking that RVM is installed"
+  stat:
+    path: "{{rvm_init_script}}"
+  ignore_errors: True
+  register: rvm_install_result
+
+- include_tasks: ./install-rvm.yaml
+  when: rvm_install_result.stat.exists != true
+
+- include_tasks: ./update-rvm.yaml
+  when: rvm_auto_update_rvm and rvm_install_result.stat.exists == true

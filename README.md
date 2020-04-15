@@ -31,6 +31,7 @@ Applications (installed with Homebrew Cask):
   - [Slack](https://slack.com/)
   - [Atom](https://atom.io/)
   - [Visual Studio Code](https://code.visualstudio.com/)
+  - [Intellij Idea](https://www.jetbrains.com/idea/)
 
 Packages (installed with Homebrew):
 
@@ -49,3 +50,5 @@ Packages (installed with Homebrew):
   - git
   - nmap
   - ssh-copy-id
+  - pyenv
+  - tfenv

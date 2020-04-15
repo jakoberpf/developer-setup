@@ -1,0 +1,5 @@
+---
+- include_tasks: ./retrieve-gpg-key.yaml
+
+- name: "[rvm] updating RVM as user"
+  shell: "source {{rvm_init_script}} && rvm get stable executable=/bin/bash"
