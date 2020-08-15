@@ -30,6 +30,7 @@ homebrew_installed_packages:
   - tflint
   - dive
   - sbt
+  - azure-cli
 
 homebrew_uninstalled_packages: []
 
