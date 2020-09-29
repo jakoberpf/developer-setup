@@ -31,6 +31,7 @@ homebrew_installed_packages:
   - dive
   - sbt
   - azure-cli
+  - mvnvm
 
 homebrew_uninstalled_packages: []
 
