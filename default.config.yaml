@@ -7,31 +7,70 @@ homebrew_install_path: "{{ homebrew_prefix }}/Homebrew"
 homebrew_brew_bin_path: "{{ homebrew_prefix }}/bin"
 
 homebrew_installed_packages:
-  - ccache
+  # Standarts
   - bash-completion
-  - gpg
+  - git
+  - wget
+  - curl
+
+  # Cryptograpyh
+  - gpg               # Same like gnupg packages
   - mcrypt
   - openssl
-  - readline
-  - sqlite3
-  - xz
-  - zlib
-  - mas
-  - wget
-  - gifsicle
-  - git
-  - nmap
+  - cfssl
   - ssh-copy-id
-  - pyenv
-  - tfenv
-  - nvm
-  - jenv
+
+  # Virtual Enviroment Managers
+  # rvm               # Manager for Ruby is being installed by Ansible
+  # gvm               # Manager for Go is being installed by Ansibel
+  - mercurial         # Is required for Golang in MacOS
+  - pyenv             # Python Manager
+  - pyenv-virtualenv  # Python virtual enviroments
+  - direnv            # https://direnv.net/ for setting variables in .envrc files
+  - tfenv             # Terraform Manager
+  - tflint            # Terraform Lint Formatting
+  - jenv              # Java Manager
+  - nvm               # Node Manager https://github.com/nvm-sh/nvm
+  - mvnvm       # Maven Manager https://mvnvm.org/
+
+  ############################
+  ### Software Development ###
+  ############################
+
+  # SoftDev
+  - ccache
+  - jhipster  # https://www.jhipster.tech/ and https://www.jhipster.tech/oh-my-zsh/
+
+  ##############################
+  ### Development Operations ###
+  ##############################
+
+  # DevOps - Cloud Providers
+  - azure-cli           # Microsoft Azure CLI
+  - awscli              # Amazon Web Services CLI
+  # google-cloud        # Google Cloud CLI ( installed via brew cask )
+
+  # DevOps - Hypervisors and Provisioners
   - terraform-docs
-  - tflint
-  - dive
-  - sbt
-  - azure-cli
-  - mvnvm
+  - openstackclient
+  - juju
+  - dive                # Container explorer https://github.com/wagoodman/dive
+
+  # DevOps - Kubernetes
+  - kubectl
+  - kubectx   # https://github.com/ahmetb/kubectx
+  - kube-ps1  # https://github.com/jonmosco/kube-ps1 NOTWORKING
+  - k9s       # https://github.com/derailed/k9s
+  - helm
+
+ # Others
+  - lsd         # lsd is ls on kokain. Depends on font-hack-nerd-font
+  - xz          # XZ Utils is free general-purpose data compression software with a high compression ratio
+  - mas         # Commandline Tool for the Mac App Store https://github.com/mas-cli/mas
+  - gifsicle    # Gif
+  - nmap        # Network Scanning Tool https://nmap.org/
+  - ipmitool    # IPMI command line tool https://www.debiantutorials.com/installing-and-using-the-ipmi-tool/
+  # - sbt # NOTWORKING
 
 homebrew_uninstalled_packages: []
 
@@ -40,14 +79,40 @@ homebrew_upgrade_all_packages: no
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - homebrew/cask-fonts
 
 homebrew_cask_apps:
-  - google-chrome
-  - slack
-  - licecap
-  - atom
-  - visual-studio-code
-  - intellij-idea
+  - google-chrome       # Google Chrome Browser
+  - google-cloud-sdk    # Google Cloud Software Development Kit
+  - firefox             # Firefox Browser
+  - gpg-suite           # brew install --cask gpg-suite
+  - slack               # Slack Chat App
+  - licecap             # GifCreator https://www.cockos.com/licecap/
+
+  ############################
+  ### Software Development ###
+  ############################
+
+  - atom                # Atom CodeEditor
+  - visual-studio-code  # VSCode CodeEditor
+  - jetbrains-toolbox   
+
+  ##############################
+  ### Development Operations ###
+  ##############################
+
+  - lens                # brew install --cask lens
+  - docker              # brew install --cask docker
+
+  ##############
+  ### Others ###
+  ##############
+
+  - font-hack-nerd-font # Dependency of "lsd"
+  - jdownloader         # brew install --cask jdownloader
+  - multipass           # brew install --cask multipass
+  - xquartz             # brew install --cask xquartz # https://techsparx.com/linux/multipass/display-gui-on-mac.html
+
 
 homebrew_cask_uninstalled_apps: []
 
