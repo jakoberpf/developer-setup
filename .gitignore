@@ -2,3 +2,4 @@
 .tfstate
 .retry
 config.yaml
+.DS_Store
