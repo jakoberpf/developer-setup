@@ -45,7 +45,7 @@ print_header
 parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd "$parent_path"
 
-ANSIBLE_VERSION=2.9.4
+ANSIBLE_VERSION=2.10.4 # 2.9.4 is broken for brew usage
 
 
 function check_ansible {
