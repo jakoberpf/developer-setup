@@ -60,6 +60,9 @@ function check_ansible {
   echo
 }
 
+# print_bold "[prep] Downloading all roles"
+# sh roles/roles.sh # 
+
 print_bold "[setup] Running ansible provisioning... "
 check_ansible
 
