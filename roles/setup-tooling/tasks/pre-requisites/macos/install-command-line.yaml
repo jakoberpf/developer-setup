@@ -21,12 +21,30 @@
   ignore_errors: true
   changed_when: false
 
-- name: "[clt] Check the Command Line Tools package metadata"
+# https://stackoverflow.com/questions/15371925/how-to-check-if-command-line-tools-is-installed
+
+# 10.8 
+# pkgutil --pkg-info=com.apple.pkg.DeveloperToolsCLI
+
+# 10.9 Mavericks
+- name: "[clt] Check the Command Line Tools package metadata for 10.9 Mavericks"
   command: pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
   register: pkg_info
   check_mode: no
   ignore_errors: true
   changed_when: false
+  when:
+    - ansible_distribution_version is version('10.9', '=')
+
+  # >= 10.10 Yosemite
+- name: "[clt] Check the Command Line Tools package metadata for 10.10 Yosemite and after"
+  shell: xcode-select -p 1>/dev/null;echo $?
+  register: pkg_info
+  check_mode: no
+  ignore_errors: true
+  changed_when: false
+  when:
+    - ansible_distribution_version is version('10.10', '>=')
 
 - name: "[clt] Prepare to install Command Line Tools"
   file:
