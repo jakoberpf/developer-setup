@@ -31,7 +31,8 @@ homebrew_installed_packages:
   - tflint            # Terraform Lint Formatting
   - jenv              # Java Manager
   - nvm               # Node Manager https://github.com/nvm-sh/nvm
-  - mvnvm       # Maven Manager https://mvnvm.org/
+  - mvnvm             # Maven Manager https://mvnvm.org/
+  - sbt               # Scalar Build Tool
 
   ############################
   ### Software Development ###
@@ -70,7 +71,6 @@ homebrew_installed_packages:
   - gifsicle    # Gif
   - nmap        # Network Scanning Tool https://nmap.org/
   - ipmitool    # IPMI command line tool https://www.debiantutorials.com/installing-and-using-the-ipmi-tool/
-  # - sbt # NOTWORKING
 
 homebrew_uninstalled_packages: []
 
@@ -95,7 +95,7 @@ homebrew_cask_apps:
 
   - atom                # Atom CodeEditor
   - visual-studio-code  # VSCode CodeEditor
-  - jetbrains-toolbox   
+  - jetbrains-toolbox   # Jetbrains IDEs
 
   ##############################
   ### Development Operations ###
@@ -108,10 +108,6 @@ homebrew_cask_apps:
   ### Others ###
   ##############
 
-  - font-hack-nerd-font # Dependency of "lsd"
-  - jdownloader         # brew install --cask jdownloader
-  - multipass           # brew install --cask multipass
-  - xquartz             # brew install --cask xquartz # https://techsparx.com/linux/multipass/display-gui-on-mac.html
 
 
 homebrew_cask_uninstalled_apps: []
