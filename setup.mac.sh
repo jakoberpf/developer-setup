@@ -46,7 +46,7 @@ parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd "$parent_path"
 
 ANSIBLE_VERSION=2.10.4 # 2.9.4 is broken for brew usage
-
+# TODO check that installed version is at least 2.10.4
 
 function check_ansible {
   if command -v ansible-playbook  >/dev/null 2>&1; then
