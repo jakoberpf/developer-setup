@@ -12,3 +12,4 @@
      - setup-tooling
      - rvm
      - gvm
+     - bash
