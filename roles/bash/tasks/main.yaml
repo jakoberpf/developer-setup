@@ -1,0 +1,9 @@
+---
+- name: "[bash] Add the bash to /etc/shells"
+  become: true
+  lineinfile:
+    line: "/usr/local/bin/bash"
+    path: "{{ shells_file_path }}"
+
+- name: "[bash] set new bash as default"
+  shell: "chsh -s /usr/local/bin/bash"
