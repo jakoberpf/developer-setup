@@ -54,6 +54,7 @@ function check_ansible {
     print_message "[setup] ansible-playbook is already installed (skipped)"
   else
     print_message "[setup] installing ansible-playbook  ..."
+    sudo -H pip3 install --upgrade pip
     sudo -H pip3 install ansible==${ANSIBLE_VERSION}
     print_green "[setup] ansible-playbook  is installed"
   fi
