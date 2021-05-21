@@ -1,1 +1,2 @@
 shells_file_path: "/etc/shells"
+bash_default: false

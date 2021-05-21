@@ -1,4 +1,7 @@
 ---
+- name: "[bash] installing pre-requisites"
+  include_tasks: "pre-requisites/install-{{ ansible_os_family }}.yaml"
+  
 - name: "[bash] Add the bash to /etc/shells"
   become: true
   lineinfile:
@@ -7,3 +10,4 @@
 
 - name: "[bash] set new bash as default"
   shell: "chsh -s /usr/local/bin/bash"
+  when: bash_default
