@@ -52,3 +52,6 @@ Packages (installed with Homebrew):
   - ssh-copy-id
   - pyenv
   - tfenv
+
+## TODOs
+Make visual documentation like https://sourabhbajaj.com/mac-setup/ as github pages
