@@ -1,6 +1,7 @@
 # curl -sSL https://get.rvm.io | bash
 ---
-- include_tasks: ./pre-requisites/retrieve-gpg-key.yaml
+- name: "[rvm] setup gpg"
+  include_tasks: "pre-requisites/retrieve-gpg-key.yaml"
 
 - name: "[rvm] downloading RVM installer"
   get_url:
