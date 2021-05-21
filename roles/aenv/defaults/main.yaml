@@ -1,0 +1,12 @@
+ansibles_versions:
+  - "2.9.16" 
+  - "2.10.9"
+  - "3.1.0"
+
+ansibles_python: python3
+
+ansibles_path: .pyenv/versions
+ansibles_snippet: .bash_ansible
+
+ansibles_shell_zsh: false
+ansibles_shell_bash: false
