@@ -10,7 +10,16 @@
 
   roles:
      - setup-tooling
+     # Language Manager
      - rvm
      - gvm
+     # nvm
+     # jenv
+     # aenv
+     # Shells
      - bash
      - zsh
+     # Tools
+     # jeklly
+     # kube-ps1
+     # reconftw
