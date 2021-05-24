@@ -12,25 +12,22 @@
     ansibles_dir: "{{ ansible_env.HOME }}/{{ ansibles_path }}"
 
 - name: "[aenv] setup virtual python enviroments"
-  shell: 'pyenv virtualenv -p "{{ ansibles_python }}" "{{ ansibles_dir }}/ansible-{{ item }}"'
-  for_items:
-    - "{{ ansibles_versions }}"
+  shell: 'pyenv virtualenv -p {{ ansibles_python }} ansible-{{ item }}'
+  with_list: "{{ ansibles_versions }}"
 
 - name: "[aenv] install ansibles in virtual enviroments"
   shell: |
-    source "{{ ansibles_dir }}/ansible-{{ item }}/bin/activate"
-    pip install --upgrade pip
+    source "{{ ansibles_dir }}/ansible-{{ item }}/bin/activate" && \
+    pip install --upgrade pip && \
     pip install ansible=={{ item }}
-  for_items:
-    - "{{ ansibles_versions }}"
+  with_list: "{{ ansibles_versions }}"
 
 - name: "[aenv] Create the ansible aliases in {{ ansibles_snippet }}"
   become: true
   lineinfile:
     line: "alias ansible-activate-{{ item }}='source {{ ansibles_dir }}/ansible-{{ item }}/bin/activate'"
     path: "{{ ansible_env.HOME }}/{{ ansibles_snippet }}"
-  for_items:
-    - "{{ ansibles_versions }}"
+  with_list: "{{ ansibles_versions }}"
 
 - name: "[aenv] Add the activate alias to zsh"
   become: true
