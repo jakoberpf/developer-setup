@@ -8,18 +8,23 @@
       with_fileglob:
         - "{{ playbook_dir }}/config.yaml"
 
+    # - shell: "sh roles/get.sh"
+
   roles:
-     - setup-tooling
-     # Language Manager
-     - rvm
-     - gvm
-     # nvm
-     # jenv
-     # aenv
-     # Shells
-     - bash
-     - zsh
-     # Tools
-     # jeklly
-     # kube-ps1
-     # reconftw
+    # Packages / Brew
+    - setup-tooling
+    # Shells
+    - bash
+    - zsh
+    # Personal Files
+    # dotfiles
+    # Language Manager
+    - rvm
+    - gvm
+    - nvm
+    - jenv
+    - aenv
+    # Tooling
+    # jeklly
+    # kube-ps1
+    # reconftw
