@@ -12,5 +12,11 @@
   shell: "chsh -s /usr/local/bin/zsh"
   when: zsh_default
 
+- name: "[zsh] check of oh-my-zsh is already installed"
+  stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  register: oh_my_zsh_dir
+
 - name: "[zsh] install oh-my-zsh"
   shell: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
+  when: not oh_my_zsh_dir.stat.exists and not oh_my_zsh_dir.stat.isdir
