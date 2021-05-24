@@ -4,22 +4,25 @@
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
-- name: "[zsh] load nvm in zsh shell"
-  become: false
-  lineinfile:
-    line: |
-      export NVM_DIR="$HOME/.nvm"
-      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-    path: "{{ ansible_env.HOME }}/.zshrc"
-    when: nvm_shell_zsh
+# - name: "[nvm] load nvm in zsh shell"
+#   become: false
+#   lineinfile:
+#     line: "{{ item }}"
+#     path: "{{ ansible_env.HOME }}/.zshrc"
+#     when: nvm_shell_zsh
+#   with_items:
+#     - 'export NVM_DIR="$HOME/.nvm"'
+#     - '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
+#     - '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
+    
 
-- name: "[zsh] load nvm in bash shell"
-  become: false
-  lineinfile:
-    line: |
-      export NVM_DIR="$HOME/.nvm"
-      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-    path: "{{ ansible_env.HOME }}/.bashrc"
-    when: nvm_shell_bash
+# - name: "[nvm] load nvm in bash shell"
+#   become: false
+#   lineinfile:
+#     line: "{{ item }}"
+#     path: "{{ ansible_env.HOME }}/.zshrc"
+#     when: nvm_shell_bash
+#   with_items:
+#     - 'export NVM_DIR="$HOME/.nvm"'
+#     - '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'
+#     - '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"'
