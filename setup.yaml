@@ -23,7 +23,6 @@
     - gvm
     - nvm
     - jenv
-    - aenv
     # Tooling
     # jeklly
     # kube-ps1
