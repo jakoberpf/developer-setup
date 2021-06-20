@@ -8,30 +8,35 @@ homebrew_brew_bin_path: "{{ homebrew_prefix }}/bin"
 
 homebrew_installed_packages:
   # Standarts
+  - bash
   - bash-completion
+  - zsh
   - git
   - wget
   - curl
 
   # Cryptograpyh
   - gpg               # Same like gnupg packages
+  - sops
+  - vault
   - mcrypt
   - openssl
   - cfssl
   - ssh-copy-id
 
   # Virtual Enviroment Managers
-  # rvm               # Manager for Ruby is being installed by Ansible
-  # gvm               # Manager for Go is being installed by Ansibel
+  # rvm               # Manager for Ruby, needs additional setup actions
+  # gvm               # Manager for Go, needs additional setup actions
+  - nvm               # Manager for Node, needs additional setup actions
   - mercurial         # Is required for Golang in MacOS
   - pyenv             # Python Manager
-  - pyenv-virtualenv  # Python virtual enviroments
+  - pyenv-virtualenv  # Python Virtual Enviroments
   - direnv            # https://direnv.net/ for setting variables in .envrc files
   - tfenv             # Terraform Manager
   - tflint            # Terraform Lint Formatting
   - jenv              # Java Manager
-  - nvm               # Node Manager https://github.com/nvm-sh/nvm
   - mvnvm             # Maven Manager https://mvnvm.org/
+  - yarn 
   - sbt               # Scalar Build Tool
 
   ############################
@@ -49,7 +54,8 @@ homebrew_installed_packages:
   # DevOps - Cloud Providers
   - azure-cli           # Microsoft Azure CLI
   - awscli              # Amazon Web Services CLI
-  # google-cloud        # Google Cloud CLI ( installed via brew cask )
+  - b2-tools            # Backblaze Storage
+  - oci-cli             # Oracle Cloud Infrastructure
 
   # DevOps - Hypervisors and Provisioners
   - terraform-docs
@@ -63,6 +69,13 @@ homebrew_installed_packages:
   - kube-ps1  # https://github.com/jonmosco/kube-ps1 NOTWORKING
   - k9s       # https://github.com/derailed/k9s
   - helm
+  - kustomize # https://github.com/kubernetes-sigs/kustomize
+  - kubeval
+
+  # DevOps - Testing and Pentesting
+  - minikube
+  - k6
+  - sqlmap
 
  # Others
   - lsd         # lsd is ls on kokain. Depends on font-hack-nerd-font
@@ -80,6 +93,10 @@ homebrew_taps:
   - homebrew/core
   - homebrew/cask
   - homebrew/cask-fonts
+  - hashicorp/tap
+  - adoptopenjdk/openjdk
+  - minio/stable
+  - instrumenta/instrumenta
 
 homebrew_cask_apps:
   - google-chrome       # Google Chrome Browser
