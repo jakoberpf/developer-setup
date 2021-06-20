@@ -125,8 +125,6 @@ homebrew_cask_apps:
   ### Others ###
   ##############
 
-
-
 homebrew_cask_uninstalled_apps: []
 
 homebrew_cask_appdir: /Applications
