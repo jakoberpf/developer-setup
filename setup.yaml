@@ -16,14 +16,8 @@
     # Shells
     - bash
     - zsh
-    # Personal Files
-    # dotfiles
     # Language Manager
     - rvm
     - gvm
     - nvm
     - jenv
-    # Tooling
-    # jeklly
-    # kube-ps1
-    # reconftw
