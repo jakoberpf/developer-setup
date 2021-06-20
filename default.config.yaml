@@ -36,7 +36,7 @@ homebrew_installed_packages:
   - tflint            # Terraform Lint Formatting
   - jenv              # Java Manager
   - mvnvm             # Maven Manager https://mvnvm.org/
-  - yarn 
+  - yarn              # TODO -> use https://yvm.js.org/docs/overview
   - sbt               # Scalar Build Tool
 
   ############################
