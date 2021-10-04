@@ -1,0 +1,6 @@
+config.yaml
+.terraform
+.tfstate
+.retry
+.DS_Store
+.venv

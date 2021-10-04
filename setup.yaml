@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  vars_files:
+    - default.config.yaml
+
+  pre_tasks:
+    - include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/config.yaml"
+
+    # - shell: "sh roles/get.sh"
+
+  roles:
+    # Packages / Brew
+    - setup-tooling
+    # Shells
+    - bash
+    - zsh
+    # Language Manager
+    - rvm
+    - gvm
+    - nvm
+    - jenv

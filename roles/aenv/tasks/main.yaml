@@ -1,0 +1,45 @@
+---
+- name: "[aenv] installing pre-requisites"
+  include_tasks: "pre-requisites/install-{{ ansible_os_family }}.yaml"
+
+- name: "[aenv] create folder for ansibles"
+  file: 
+    path: "{{ ansible_env.HOME }}/{{ ansibles_path }}"
+    state: directory
+
+- name: "[aenv] set fact for ansibles directory"
+  set_fact:
+    ansibles_dir: "{{ ansible_env.HOME }}/{{ ansibles_path }}"
+
+- name: "[aenv] setup virtual python enviroments"
+  shell: 'pyenv virtualenv -p {{ ansibles_python }} ansible-{{ item }}'
+  with_list: "{{ ansibles_versions }}"
+
+- name: "[aenv] install ansibles in virtual enviroments"
+  shell: |
+    source "{{ ansibles_dir }}/ansible-{{ item }}/bin/activate" && \
+    pip install --upgrade pip && \
+    pip install ansible=={{ item }}
+  with_list: "{{ ansibles_versions }}"
+
+- name: "[aenv] Create the ansible aliases in {{ ansibles_snippet }}"
+  become: true
+  lineinfile:
+    line: "alias ansible-activate-{{ item }}='source {{ ansibles_dir }}/ansible-{{ item }}/bin/activate'"
+    path: "{{ ansible_env.HOME }}/{{ ansibles_snippet }}"
+  with_list: "{{ ansibles_versions }}"
+
+- name: "[aenv] Add the activate alias to zsh"
+  become: true
+  lineinfile:
+    line: "source {{ ansible_env.HOME }}/{{ ansibles_snippet }}"
+    path: "{{ ansible_env.HOME }}/.zshrc"
+  when: ansibles_shell_zsh
+
+- name: "[aenv] Add the activate alias to bash"
+  become: true
+  lineinfile:
+    line: "source {{ ansible_env.HOME }}/{{ ansibles_snippet }}"
+    path: "{{ ansible_env.HOME }}/.bashrc"
+  when: ansibles_shell_bash
+  

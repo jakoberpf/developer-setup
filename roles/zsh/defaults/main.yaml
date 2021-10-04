@@ -1,0 +1,2 @@
+shells_file_path: "/etc/shells"
+zsh_default: false

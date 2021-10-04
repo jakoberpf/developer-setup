@@ -1,0 +1,4 @@
+---
+
+- name: "[setup-tooling] installing pre-requisites"
+  include_tasks: "pre-requisites/install-{{ ansible_os_family }}.yaml"

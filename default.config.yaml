@@ -1,0 +1,154 @@
+---
+### MacOSX specific
+homebrew_repo: https://github.com/Homebrew/brew
+
+homebrew_prefix: /usr/local
+homebrew_install_path: "{{ homebrew_prefix }}/Homebrew"
+homebrew_brew_bin_path: "{{ homebrew_prefix }}/bin"
+
+homebrew_installed_packages:
+  # Standarts
+  - bash
+  - bash-completion
+  - zsh
+  - git
+  - wget
+  - curl
+
+  # Cryptograpyh
+  - gpg               # Same like gnupg packages
+  - sops
+  - vault
+  - mcrypt
+  - openssl
+  - cfssl
+  - ssh-copy-id
+
+  # Virtual Enviroment Managers
+  # rvm               # Manager for Ruby, needs additional setup actions
+  # gvm               # Manager for Go, needs additional setup actions
+  - nvm               # Manager for Node, needs additional setup actions
+  - mercurial         # Is required for Golang in MacOS
+  - pyenv             # Python Manager
+  - pyenv-virtualenv  # Python Virtual Enviroments
+  - direnv            # https://direnv.net/ for setting variables in .envrc files
+  - tfenv             # Terraform Manager
+  - tflint            # Terraform Lint Formatting
+  - jenv              # Java Manager
+  - mvnvm             # Maven Manager https://mvnvm.org/
+  - yarn              # TODO -> use https://yvm.js.org/docs/overview
+  - sbt               # Scalar Build Tool
+
+  ############################
+  ### Software Development ###
+  ############################
+
+  # SoftDev
+  - ccache
+  - jhipster  # https://www.jhipster.tech/ and https://www.jhipster.tech/oh-my-zsh/
+
+  ##############################
+  ### Development Operations ###
+  ##############################
+
+  # DevOps - Cloud Providers
+  - azure-cli           # Microsoft Azure CLI
+  - awscli              # Amazon Web Services CLI
+  - b2-tools            # Backblaze Storage
+  - oci-cli             # Oracle Cloud Infrastructure
+
+  # DevOps - Hypervisors and Provisioners
+  - terraform-docs
+  - openstackclient
+  - juju
+  - dive                # Container explorer https://github.com/wagoodman/dive
+
+  # DevOps - Kubernetes
+  - kubectl
+  - kubectx   # https://github.com/ahmetb/kubectx
+  - kube-ps1  # https://github.com/jonmosco/kube-ps1 NOTWORKING
+  - k9s       # https://github.com/derailed/k9s
+  - helm
+  - kustomize # https://github.com/kubernetes-sigs/kustomize
+  - kubeval
+
+  # DevOps - Testing and Pentesting
+  - minikube
+  - k6
+  - sqlmap
+
+ # Others
+  - lsd         # lsd is ls on kokain. Depends on font-hack-nerd-font
+  - xz          # XZ Utils is free general-purpose data compression software with a high compression ratio
+  - mas         # Commandline Tool for the Mac App Store https://github.com/mas-cli/mas
+  - gifsicle    # Gif
+  - nmap        # Network Scanning Tool https://nmap.org/
+  - ipmitool    # IPMI command line tool https://www.debiantutorials.com/installing-and-using-the-ipmi-tool/
+
+homebrew_uninstalled_packages: []
+
+homebrew_upgrade_all_packages: no
+
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+  - homebrew/cask-fonts
+  - hashicorp/tap
+  - adoptopenjdk/openjdk
+  - minio/stable
+  - instrumenta/instrumenta
+
+homebrew_cask_apps:
+  - google-chrome       # Google Chrome Browser
+  - google-cloud-sdk    # Google Cloud Software Development Kit
+  - firefox             # Firefox Browser
+  - gpg-suite           # brew install --cask gpg-suite
+  - slack               # Slack Chat App
+  - licecap             # GifCreator https://www.cockos.com/licecap/
+
+  ############################
+  ### Software Development ###
+  ############################
+
+  - atom                # Atom CodeEditor
+  - visual-studio-code  # VSCode CodeEditor
+  - jetbrains-toolbox   # Jetbrains IDEs
+
+  ##############################
+  ### Development Operations ###
+  ##############################
+
+  - lens                # brew install --cask lens
+  - docker              # brew install --cask docker
+
+  ##############
+  ### Others ###
+  ##############
+
+homebrew_cask_uninstalled_apps: []
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_accept_external_apps: false
+
+homebrew_use_brewfile: true
+homebrew_brewfile_dir: '~'
+
+homebrew_clear_cache: false
+
+homebrew_folders_additional: []
+
+homebrew_folders_base:
+  - Cellar
+  - Homebrew
+  - Frameworks
+  - Caskroom
+  - bin
+  - etc
+  - include
+  - lib
+  - opt
+  - sbin
+  - share
+  - share/zsh
+  - share/zsh/site-functions
+  - var

@@ -1,0 +1,22 @@
+---
+- name: "[zsh] installing pre-requisites"
+  include_tasks: "pre-requisites/install-{{ ansible_os_family }}.yaml"
+
+- name: "[zsh] Add the zsh to /etc/shells"
+  become: true
+  lineinfile:
+    line: "/usr/local/bin/zsh"
+    path: "{{ shells_file_path }}"
+
+- name: "[zsh] set new zsh as default"
+  shell: "chsh -s /usr/local/bin/zsh"
+  when: zsh_default
+
+- name: "[zsh] check of oh-my-zsh is already installed"
+  stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  register: oh_my_zsh_dir
+
+- name: "[zsh] install oh-my-zsh"
+  shell: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
+  when: not oh_my_zsh_dir.stat.exists

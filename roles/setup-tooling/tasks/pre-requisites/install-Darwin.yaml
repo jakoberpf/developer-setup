@@ -1,0 +1,7 @@
+---
+
+- name: "[darwin] Install command line tools"
+  include_tasks: "macos/install-command-line.yaml"
+
+- name: "[darwin] Install Homebrew & requested applications"
+  include_tasks: "macos/install-homebrew.yaml"
