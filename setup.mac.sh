@@ -2,14 +2,14 @@
 
 print_header() {
   echo
-  echo "                             __           _                       "
-  echo "                            / _|         | |                      "
-  echo "          __ _ _ __   ___  | |_ __ _  ___| |_ ___  _ __ _   _     "
-  echo "         / _' | '_ \ / _ \ |  _/ _' |/ __| __/ _ \| '__| | | |    "
-  echo "        | (_| | |_) |  __/ | || (_| | (__| || (_) | |  | |_| |    "
-  echo "         \__,_| .__/ \___| |_| \__,_|\___|\__\___/|_|   \__, |    "
-  echo "              | |                                        __/ |    "
-  echo "              |_|                                       |___/     "
+  echo "                            __        "
+  echo "                          / _|        "
+  echo "         ___  _ __ _ __  | |_         "
+  echo "        / _ \| '__| '_ \ |  _/        "
+  echo "       |  __/| |  | |_) || |          "
+  echo "        \___||_|  | .__/ |_|          "
+  echo "                  | |                 "
+  echo "                  |_|                 "
   echo
   echo
 }
@@ -45,8 +45,17 @@ print_header
 parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd "$parent_path"
 
-ANSIBLE_VERSION=3.1.0 # < 2.10.4 has broken brew collection
-# TODO check that installed version is at least ANSIBLE_VERSION
+# create virtual python3 enviroment
+python3 -m venv .venv
+
+# switch to cli to virtual python3 enviroment
+source .venv/bin/activate
+
+# set ansible version to use
+ANSIBLE_VERSION=3.1.0 # NOTE: < 2.10.4 has broken brew collection # TODO check that installed version is at least ANSIBLE_VERSION
+
+# xcode-select --install
+# If python makes problem try reinstalling pip. curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py
 
 function check_ansible {
   if command -v ansible-playbook  >/dev/null 2>&1; then
