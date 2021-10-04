@@ -3,3 +3,4 @@ config.yaml
 .tfstate
 .retry
 .DS_Store
+.venv
