@@ -54,4 +54,5 @@ Packages (installed with Homebrew):
   - tfenv
 
 ## TODOs
-Make visual documentation like https://sourabhbajaj.com/mac-setup/ as github pages
+- Make visual documentation like https://sourabhbajaj.com/mac-setup/ as github pages
+- Setup git precommit hook for cleaning script with ``sed -i -e 's/\r$//' <scriptname>.sh``
