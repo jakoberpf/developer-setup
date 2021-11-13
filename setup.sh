@@ -1,0 +1,119 @@
+#!/bin/bash
+
+abort() {
+  printf "%s\n" "$@"
+  exit 1
+}
+
+while getopts u:a:f: flag
+do
+    case "${flag}" in
+        v)    VERBOSE=${OPTARG};;
+        gu)   OPS_GITHUB_USERNAME=${OPTARG};;
+        gt)   OPS_GITHUB_TOKEN=${OPTARG};;
+        grs)  OPS_GITHUB_REPO_SETUP=${OPTARG};;
+        grh)  OPS_GITHUB_REPO_HOME=${OPTARG};;
+    esac
+done
+
+# Fail fast with a concise message when not using bash
+# Single brackets are needed here for POSIX compatibility
+if [ -z "${BASH_VERSION:-}" ]
+then
+  abort "[error] Bash is required to interpret this script."
+fi
+
+# Fail fast if running as root
+# Single brackets are needed here for POSIX compatibility
+if [ "${EUID}" == 0 ]
+then
+  abort "[error] Running this script as root is not supported and dangerous."
+fi
+
+# Check if script is run non-interactively (e.g. CI)
+# If it is run non-interactively we should not prompt for passwords.
+if [[ ! -t 0 || -n "${CI-}" ]]
+then
+  NONINTERACTIVE=1
+fi
+
+print_header() {
+  echo
+  echo "             _                _                                     _                       "
+  echo "            | |              | |                                   | |                      "
+  echo "          __| | _____   _____| | ___  _ __   ___ _ __      ___  ___| |_ _   _ _ __          "
+  echo "         / _  |/ _ \ \ / / _ \ |/ _ \| '_ \ / _ \ '__|____/ __|/ _ \ __| | | | '_ \         "
+  echo "        | (_| |  __/\ V /  __/ | (_) | |_) |  __/ | |_____\__ \  __/ |_| |_| | |_) |        "
+  echo "         \__,_|\___| \_/ \___|_|\___/| .__/ \___|_|       |___/\___|\__|\__,_| .__/         "
+  echo "                                     | |                                     | |            "
+  echo "                                     |_|                                     |_|            "
+  echo "                                                                                            "
+  echo
+}
+
+print_header
+
+# Check the OS.
+OS="$(uname)"
+if [[ "${OS}" != "Linux" && "${OS}" != "Darwin" ]]
+then
+  abort "[error] The developer-setup is only supported on macOS and Linux."
+fi
+
+# Check the environment variables
+# if [ -n "$OPS_GITHUB_USERNAME" ]; then
+#   GITHUB_USERNAME=$OPS_GITHUB_USERNAME
+# elif [ ! -n "$GITHUB_USERNAME" ]; then
+#   echo "Enter your Github Username: "
+#   read GITHUB_USERNAME
+# fi
+
+# if [ -n "$OPS_GGITHUB_TOKEN" ]; then
+#   GITHUB_TOKEN=$OPS_GITHUB_TOKEN
+# elif [ ! -n "$GITHUB_TOKEN" ]; then
+#   read -p "Enter Your Name: " x
+#   read GITHUB_TOKEN
+# fi
+
+# GITHUB_TOKEN=""
+# GITHUB_REPO_SETUP=""
+# GITHUB_REPO_HOME=""
+
+LOCALREPO_SETUP=".setup"
+LOCALREPO_HOME=".home"
+
+# Show settings
+# if [ -v VERBOSE ]
+# then
+#   echo "[log] "
+# fi
+
+# Clone or pull setup repository
+echo "[setup] Downloading the setup repository from github."
+if [ ! -d ~/$LOCALREPO_SETUP/.git ]
+then
+    git clone https://$GITHUB_TOKEN@github.com/$GITHUB_USERNAME/$GITHUB_REPO_SETUP.git ~/$LOCALREPO_SETUP
+else
+    cd ~/$LOCALREPO_SETUP
+    git pull
+fi
+
+# Clone or pull home repository
+echo "[setup] Downloading the home repository from github."
+if [ ! -d ~/$LOCALREPO_HOME/.git ]
+then
+    git clone https://$GITHUB_TOKEN@github.com/$GITHUB_USERNAME/$GITHUB_REPO_HOME.git ~/$LOCALREPO_HOME
+else
+    cd ~/$LOCALREPO_HOME
+    git pull
+fi
+
+if [[ "${OS}" == "Darwin" ]]
+then
+  echo "[setup] Running setup for macOS."
+elif [[ "${OS}" == "Linux" ]]
+then
+  echo "[setup] Running setup for Ubuntu/Linux."
+fi
+
+echo "[manual] Setup you gpg keys"
