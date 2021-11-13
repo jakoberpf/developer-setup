@@ -8,7 +8,7 @@
 - name: "[homebrew] Ensure Homebrew parent directory has correct permissions (MacOS >= 10.13)."
   file:
     path: "{{ homebrew_prefix }}"
-    owner: root
+    owner: "{{ homebrew_user }}" # TODO test on non ARM MacOS, was value "root"
     state: directory
   become: yes
   when: "ansible_distribution_version is version('10.13', '>=')"
