@@ -4,6 +4,10 @@ This playbook installs and configures most of the software we use for web and so
 
 ## Installation
 
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/jakoberpf/developer-setup/HEAD/install.sh)"
+```
+
 1. Clone this repository to your local drive.
 2. Run `./setup.mac.sh` inside this directory. Enter your account password when prompted.
 
@@ -25,34 +29,35 @@ Any variable can be overridden in `config.yaml`; see the supporting roles' docum
 
 Applications (installed with Homebrew Cask):
 
-  - [Docker](https://www.docker.com/)
-  - [Google Chrome](https://www.google.com/chrome/)
-  - [LICEcap](http://www.cockos.com/licecap/)
-  - [Slack](https://slack.com/)
-  - [Atom](https://atom.io/)
-  - [Visual Studio Code](https://code.visualstudio.com/)
-  - [Intellij Idea](https://www.jetbrains.com/idea/)
+- [Docker](https://www.docker.com/)
+- [Google Chrome](https://www.google.com/chrome/)
+- [LICEcap](http://www.cockos.com/licecap/)
+- [Slack](https://slack.com/)
+- [Atom](https://atom.io/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Intellij Idea](https://www.jetbrains.com/idea/)
 
 Packages (installed with Homebrew):
 
-  - ccache
-  - bash-completion
-  - gpg
-  - mcrypt
-  - openssl
-  - readline
-  - sqlite3
-  - xz
-  - zlib
-  - mas
-  - wget
-  - gifsicle
-  - git
-  - nmap
-  - ssh-copy-id
-  - pyenv
-  - tfenv
+- ccache
+- bash-completion
+- gpg
+- mcrypt
+- openssl
+- readline
+- sqlite3
+- xz
+- zlib
+- mas
+- wget
+- gifsicle
+- git
+- nmap
+- ssh-copy-id
+- pyenv
+- tfenv
 
 ## TODOs
-- Make visual documentation like https://sourabhbajaj.com/mac-setup/ as github pages
+
+- Make visual documentation like <https://sourabhbajaj.com/mac-setup/> as github pages
 - Setup git precommit hook for cleaning script with ``sed -i -e 's/\r$//' <scriptname>.sh``
