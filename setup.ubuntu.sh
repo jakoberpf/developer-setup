@@ -1,19 +1,5 @@
 #!/bin/bash
 
-print_header() {
-  echo
-  echo "                            __        "
-  echo "                          / _|        "
-  echo "         ___  _ __ _ __  | |_         "
-  echo "        / _ \| '__| '_ \ |  _/        "
-  echo "       |  __/| |  | |_) || |          "
-  echo "        \___||_|  | .__/ |_|          "
-  echo "                  | |                 "
-  echo "                  |_|                 "
-  echo
-  echo
-}
-
 print_title() {
   printf '%s\n\e[1m %s \e[m\n%s\n' "${DIVIDER}" "${1}" "${DIVIDER}"
 }
@@ -37,8 +23,6 @@ print_red() {
 print_bold() {
   printf '\e[1m%s\e[m\n' "${1}"
 }
-
-print_header
 
 # move to script folder
 parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
