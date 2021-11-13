@@ -1,17 +1,23 @@
-## Download the necessary roles from github
+#!/bin/bash
+echo "[setup] Download the ansible roles from github with. Running script with bash version: $BASH_VERSION"
 
-# setup-tooling
+GIT_ROOT=$(git rev-parse --show-toplevel)
+GIT_URL="https://github.com"
+GIT_USERNAME="jakoberpf"
+GIT_REPO_PREFIX="ansible-role-setup"
 
-# gvm
+declare -a roles
+# aws
+roles+=("tooling")
+roles+=("bash")
+roles+=("zsh")
+roles+=("rvm")
+roles+=("gvm")
+roles+=("nvm")
+roles+=("jenv")
+# ... add addtional
 
-# rvm
-
-## Additional 
-
-# kube-ps1
-
-## Custom / Privat
-
-# setup-home
-
-# setup-enviroment
+for role in "${roles[@]}";
+do
+    git clone $GIT_URL/$GIT_USERNAME/$GIT_REPO_PREFIX-jenv.git jenv $GIT_ROOT/roles/$role
+done
