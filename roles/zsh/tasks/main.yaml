@@ -5,11 +5,11 @@
 - name: "[zsh] Add the zsh to /etc/shells"
   become: true
   lineinfile:
-    line: "/usr/local/bin/zsh"
+    line: "{{ zsh_prefix }}/bin/zsh"
     path: "{{ shells_file_path }}"
 
 - name: "[zsh] set new zsh as default"
-  shell: "chsh -s /usr/local/bin/zsh"
+  shell: "chsh -s {{ zsh_prefix }}/bin/zsh"
   when: zsh_default
 
 - name: "[zsh] check of oh-my-zsh is already installed"

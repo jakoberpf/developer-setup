@@ -1,2 +1,3 @@
 shells_file_path: "/etc/shells"
+bash_prefix: "/usr/local"
 bash_default: false
