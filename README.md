@@ -1,4 +1,4 @@
-# on-boarding.setup
+# developer-setup
 
 This playbook installs and configures most of the software we use for web and software development.
 
