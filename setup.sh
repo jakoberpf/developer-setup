@@ -61,19 +61,19 @@ then
 fi
 
 # Check the environment variables
-# if [ -n "$OPS_GITHUB_USERNAME" ]; then
-#   GITHUB_USERNAME=$OPS_GITHUB_USERNAME
-# elif [ ! -n "$GITHUB_USERNAME" ]; then
-#   echo "Enter your Github Username: "
-#   read GITHUB_USERNAME
-# fi
+if [ -n "$OPS_GITHUB_USERNAME" ]; then
+  GITHUB_USERNAME=$OPS_GITHUB_USERNAME
+elif [ ! -n "$GITHUB_USERNAME" ]; then
+  echo "Enter your Github Username: "
+  read GITHUB_USERNAME
+fi
 
-# if [ -n "$OPS_GGITHUB_TOKEN" ]; then
-#   GITHUB_TOKEN=$OPS_GITHUB_TOKEN
-# elif [ ! -n "$GITHUB_TOKEN" ]; then
-#   read -p "Enter Your Name: " x
-#   read GITHUB_TOKEN
-# fi
+if [ -n "$OPS_GGITHUB_TOKEN" ]; then
+  GITHUB_TOKEN=$OPS_GITHUB_TOKEN
+elif [ ! -n "$GITHUB_TOKEN" ]; then
+  read -p "Enter Your Name: "
+  read GITHUB_TOKEN
+fi
 
 # GITHUB_TOKEN=""
 # GITHUB_REPO_SETUP=""
