@@ -60,21 +60,6 @@ then
   abort "[error] The developer-setup is only supported on macOS and Linux."
 fi
 
-# Check the environment variables
-if [ -n "$OPS_GITHUB_USERNAME" ]; then
-  GITHUB_USERNAME=$OPS_GITHUB_USERNAME
-elif [ ! -n "$GITHUB_USERNAME" ]; then
-  echo "Enter your Github Username: "
-  read GITHUB_USERNAME
-fi
-
-if [ -n "$OPS_GGITHUB_TOKEN" ]; then
-  GITHUB_TOKEN=$OPS_GITHUB_TOKEN
-elif [ ! -n "$GITHUB_TOKEN" ]; then
-  echo "Enter Your Github Token: "
-  read GITHUB_TOKEN
-fi
-
 # GITHUB_TOKEN=""
 GITHUB_REPO_SETUP="my-setup"
 GITHUB_REPO_HOME="my-home"
@@ -113,11 +98,13 @@ then
   echo "[setup] Running setup for macOS."
   if [[ `uname -m` == 'arm64' ]]; then
     echo "[setup] AppleSilicon detected, will install Rosetta."
-    sudo softwareupdate --install-rosetta
+    sudo softwareupdate --install-rosetta --agree-to-license
   fi
+  ~/$LOCALREPO_SETUP/setup.mac.sh
 elif [[ "${OS}" == "Linux" ]]
 then
   echo "[setup] Running setup for Ubuntu/Linux."
 fi
 
-echo "[manual] Setup you gpg keys"
+echo "[custom] Run the custom configuration"
+~/$LOCALREPO_HOME/bin/run.sh
