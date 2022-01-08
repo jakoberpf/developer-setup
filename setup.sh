@@ -76,8 +76,8 @@ elif [ ! -n "$GITHUB_TOKEN" ]; then
 fi
 
 # GITHUB_TOKEN=""
-# GITHUB_REPO_SETUP=""
-# GITHUB_REPO_HOME=""
+GITHUB_REPO_SETUP="my-setup"
+GITHUB_REPO_HOME="my-home"
 
 LOCALREPO_SETUP=".setup"
 LOCALREPO_HOME=".home"
