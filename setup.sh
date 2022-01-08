@@ -98,8 +98,8 @@ else
     git pull
 fi
 
-# Clone or pull home repository
-echo "[setup] Downloading the home repository from github."
+# Clone or pull configuration repository
+echo "[setup] Downloading the configuration repository from github."
 if [ ! -d ~/$LOCALREPO_HOME/.git ]
 then
     git clone https://$GITHUB_TOKEN@github.com/$GITHUB_USERNAME/$GITHUB_REPO_HOME.git ~/$LOCALREPO_HOME
@@ -111,6 +111,10 @@ fi
 if [[ "${OS}" == "Darwin" ]]
 then
   echo "[setup] Running setup for macOS."
+  if [[ `uname -m` == 'arm64' ]]; then
+    echo "[setup] AppleSilicon detected, will install Rosetta."
+    sudo softwareupdate --install-rosetta
+  fi
 elif [[ "${OS}" == "Linux" ]]
 then
   echo "[setup] Running setup for Ubuntu/Linux."
