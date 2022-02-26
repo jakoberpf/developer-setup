@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "[setup] Download the ansible roles from github with. Running script with bash version: $BASH_VERSION"
+echo "[setup] Download the ansible roles from github."
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
 GIT_URL="https://github.com"
