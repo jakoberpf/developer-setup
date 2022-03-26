@@ -6,3 +6,13 @@
     state: present
   loop:
     - bash
+
+- name: "[bash] Add the bash to /etc/shells"
+  become: true
+  lineinfile:
+    line: "{{ bash_prefix }}/bin/bash"
+    path: "{{ shells_file_path }}"
+
+- name: "[bash] set new bash as default"
+  shell: "chsh -s {{ bash_prefix }}/bin/bash"
+  when: bash_default
