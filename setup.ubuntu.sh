@@ -65,5 +65,5 @@ check_ansible
 ansible-playbook setup.yaml --ask-become-pass
 
 echo
-print_bold "[setup] Your mac is setup"
+print_bold "[setup] Your Ubuntu is setup"
 print_bold "[setup] You can now close this terminal to get the ENV VAR in the next session "
