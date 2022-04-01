@@ -1,20 +1,18 @@
 ---
-- name: "[zsh] Ensure necessary brew packages are installed."
-  homebrew:
+- name: "[zsh] Ensure necessary apt packages are installed."
+  become: yes
+  apt:
     name: "{{ item.name | default(item) }}"
-    install_options: "{{ item.install_options | default(omit) }}"
     state: present
   loop:
+    - build-essential
     - zsh
 
-- name: "[zsh] Add the zsh to /etc/shells"
-  become: true
-  lineinfile:
-    line: "{{ zsh_prefix }}/bin/zsh"
-    path: "{{ shells_file_path }}"
-
 - name: "[zsh] set new zsh as default"
-  shell: "chsh -s {{ zsh_prefix }}/bin/zsh"
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /bin/zsh
   when: zsh_default
 
 - name: "[zsh] check if oh-my-zsh is already installed"
