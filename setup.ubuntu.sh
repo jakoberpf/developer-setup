@@ -29,7 +29,7 @@ parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd "$parent_path"
 
 # install dependencies
-sudo apt-get install python3-venv
+sudo apt-get install python3-venv python3-apt
 
 # create virtual python3 enviroment
 python3 -m venv .venv
@@ -48,10 +48,10 @@ function check_ansible {
     echo
     print_message "[setup] ansible-playbook is already installed (skipped)"
   else
-    print_message "[setup] installing ansible-playbook  ..."
+    print_message "[setup] installing ansible-playbook ..."
     pip3 install --upgrade pip
     pip3 install ansible==${ANSIBLE_VERSION}
-    print_green "[setup] ansible-playbook  is installed"
+    print_green "[setup] ansible-playbook is installed"
   fi
   echo
 }
@@ -62,7 +62,7 @@ function check_ansible {
 print_bold "[setup] Running ansible provisioning... "
 check_ansible
 
-ansible-playbook setup.yaml --ask-become-pass
+ansible-playbook setup.yaml --ask-become-pass -e ansible_python_interpreter=/usr/bin/python3
 
 echo
 print_bold "[setup] Your Ubuntu is setup"
