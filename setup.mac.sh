@@ -45,10 +45,10 @@ function check_ansible {
     echo
     print_message "[setup] ansible-playbook is already installed (skipped)"
   else
-    print_message "[setup] installing ansible-playbook  ..."
+    print_message "[setup] installing ansible-playbook ..."
     sudo -H pip3 install --upgrade pip
     sudo -H pip3 install ansible==${ANSIBLE_VERSION}
-    print_green "[setup] ansible-playbook  is installed"
+    print_green "[setup] ansible-playbook is installed"
   fi
   echo
 }
@@ -62,5 +62,5 @@ check_ansible
 ansible-playbook setup.yaml --ask-become-pass # -e ansible_password='{{ lookup("env", "ANSIBLE_PASSWORD") }}'
 
 echo
-print_bold "[setup] Your mac is setup"
+print_bold "[setup] Your Mac is setup"
 print_bold "[setup] You can now close this terminal to get the ENV VAR in the next session "
