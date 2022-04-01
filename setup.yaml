@@ -8,8 +8,6 @@
       with_fileglob:
         - "{{ playbook_dir }}/config.yaml"
 
-    # - shell: "sh roles/get.sh"
-
   roles:
     # Packages / Brew
     - setup-tooling
