@@ -1,0 +1,18 @@
+distributions:
+  - Darwin
+  - Debian
+
+applications:
+  - name: lens
+    descriptions: "The Kubernetes IDE"
+    distros:
+      - distro: Darwin
+        type: brew
+        brew:
+          name: lens
+          cask: false
+      - distro: Debian
+        type: role
+        role:
+          name: jakoberpf/setup-app-lens
+          version: 0.0.1
