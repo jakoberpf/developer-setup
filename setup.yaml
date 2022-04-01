@@ -10,12 +10,12 @@
 
   roles:
     # Packages / Brew
-    - setup-tooling
+    #- setup-tooling
     # Shells
     - bash
     - zsh
     # Language Manager
-    - rvm
-    - gvm
-    - nvm
-    - jenv
+    #- rvm
+    #- gvm
+    #- nvm
+    #- jenv
