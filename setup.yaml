@@ -2,11 +2,16 @@
 - hosts: localhost
   vars_files:
     - default.config.yaml
+    - applications.yaml
 
   pre_tasks:
     - include_vars: "{{ item }}"
       with_fileglob:
         - "{{ playbook_dir }}/config.yaml"
+  
+    - debug:
+        msg: "{{ applications | select('match', '^(eth|wlan)[0-9]+') | list }}"
+        verbosity: 2
 
   roles:
     # Packages / Brew

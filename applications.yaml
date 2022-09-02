@@ -1,8 +1,22 @@
+# https://www.tailored.cloud/devops/how-to-filter-and-map-lists-in-ansible/
+
 distributions:
   - Darwin
   - Debian
 
 applications:
+  - name: awscli
+    descriptions: "The Amazon Web Service Commandline Interface"
+    distros:
+      - distro: Darwin
+        type: brew
+        brew:
+          name: awscli
+          cask: false
+      - distro: Debian
+        type: apt
+        apt:
+          name: awscli
   - name: lens
     descriptions: "The Kubernetes IDE"
     distros:
@@ -16,3 +30,7 @@ applications:
         role:
           name: jakoberpf/setup-app-lens
           version: 0.0.1
+  - name: bashhub
+    # https://github.com/rcaloras/bashhub-client
+  - name: atom
+    # https://linuxize.com/post/how-to-install-atom-text-editor-on-ubuntu-20-04/
