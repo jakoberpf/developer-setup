@@ -1,2 +1,5 @@
 # ansible-role-setup-jenv
-https://www.jenv.be/
+
+[Offical Guide](https://www.jenv.be/)
+
+https://ostechnix.com/how-to-manage-multiple-java-versions-with-jenv-on-linux/
