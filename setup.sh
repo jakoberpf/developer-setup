@@ -68,7 +68,31 @@ elif [ ! -n "$GITHUB_USERNAME" ]; then
   read GITHUB_USERNAME
 fi
 
-if [ -n "$OPS_GGITHUB_TOKEN" ]; then
+function authenticated_by_ssh() {
+  # Set the ssh key to try with
+  ssh_key="~/.ssh/id_rsa"
+  # Attempt to ssh to GitHub
+  ssh -T git@github.com &>/dev/null
+  # Get username from response | cut -d ' ' -f2 | tr -d '!'
+  RET=$?
+  echo "$RET"
+  if [ $RET == 1 ]; then
+    # user is authenticated, but fails to open a shell with GitHub 
+    return 0
+  elif [ $RET == 255 ]; then
+    # user is not authenticated
+    return 1
+  else
+    echo "Unknown exit code in attempt to ssh into git@github.com"
+  fi
+  return 2
+}
+
+
+if [ authenticated_by_ssh ]; then
+  # User is authenticated by ssh, so no token is necessary
+  GIT_AUTH="sshkey"
+elif [ -n "$OPS_GGITHUB_TOKEN" ]; then
   GITHUB_TOKEN=$OPS_GITHUB_TOKEN
 elif [ ! -n "$GITHUB_TOKEN" ]; then
   echo "Enter Your Github Token: "
