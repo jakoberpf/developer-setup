@@ -140,6 +140,7 @@ then
     sudo softwareupdate --install-rosetta --agree-to-license
   fi
   ~/$LOCALREPO_HOME/bin/config.sh ~/$LOCALREPO_SETUP
+  ~/$LOCALREPO_SETUP/setup.mac.sh
 elif [[ "${OS}" == "Linux" ]]
 then
   echo "[setup] Running setup for Ubuntu/Linux."
