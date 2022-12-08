@@ -1,12 +1,11 @@
 ---
-name: CI-MacOS
+name: CI-Ubuntu
 on:
   pull_request:
   push:
     branches:
       - master
       - ubuntu-compatibility
-      - macos-compatibility
   # schedule:
   #   - cron: "0 5 * * 4"
 
@@ -38,28 +37,19 @@ jobs:
     strategy:
       matrix:
         os:
-          # - macos-13
-          - macos-12
-          - macos-11
+          - ubuntu-22.04
+          - ubuntu-20.04
 
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v2
-
-      - name: Uninstall GitHub Actions' built-in Homebrew.
-        run: test/uninstall-homebrew.sh
-
-      - name: Uninstall GitHub Actions' built-in browser installs.
-        run: |
-          sudo rm -rf /Applications/Firefox.app
-          sudo rm -rf /Applications/Google\ Chrome.app
 
       # - name: Set up the test environment.
       #   run: |
       #     ansible-galaxy install -r requirements.yml
 
       - name: Test the playbook.
-        run: ./setup.mac.sh
+        run: ./setup.ubuntu.sh
         env:
           ANSIBLE_FORCE_COLOR: '1'
           ANSIBLE_PASSWORD: 'super-secure'
