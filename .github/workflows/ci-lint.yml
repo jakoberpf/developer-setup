@@ -1,5 +1,5 @@
 ---
-name: MacOS
+name: Lint & Test
 on:
   pull_request:
   push:
