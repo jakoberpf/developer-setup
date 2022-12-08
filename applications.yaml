@@ -6,7 +6,7 @@ distributions:
 
 applications:
   - name: awscli
-    descriptions: "The Amazon Web Service Commandline Interface"
+    descriptions: The amazon web Service Commandline Interface
     distros:
       - distro: Darwin
         type: brew
@@ -18,7 +18,7 @@ applications:
         apt:
           name: awscli
   - name: lens
-    descriptions: "The Kubernetes IDE"
+    descriptions: The kubernetes IDE
     distros:
       - distro: Darwin
         type: brew
@@ -31,6 +31,8 @@ applications:
           name: jakoberpf/setup-app-lens
           version: 0.0.1
   - name: bashhub
+    descriptions: A client for the bashhub commandline history server
     # https://github.com/rcaloras/bashhub-client
   - name: atom
+    descriptions: "A minimal IDE"
     # https://linuxize.com/post/how-to-install-atom-text-editor-on-ubuntu-20-04/
