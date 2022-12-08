@@ -1,5 +1,7 @@
 # developer-setup
 
+[![Lint & Test][badge-gh-actions]][link-gh-actions] [![MacOS][badge-gh-actions]][link-gh-actions] [![Ubuntu][badge-gh-actions]][link-gh-actions]
+
 This playbook installs and configures macOS or Ubuntu with development tools.
 
 ## Installation
