@@ -13,15 +13,28 @@
       loop: "{{ configs.stdout_lines }}"
   
     - debug:
-        msg: "{{ applications | select('match', '^(eth|wlan)[0-9]+') | list }}"
-        verbosity: 2
+        msg: "{{ applications | map(attribute='name') }}"
+
+    - name:
+      set_fact:
+        applications_names: "{{ applications | map(attribute='name') }}"
+
+    - debug:
+        msg: "{{ applications_names }}"
+
+    - debug:
+        msg: "{{ (applications | selectattr('name', 'search', 'awscli') | list | first).descriptions }}"
+
+    - debug:
+        msg: "{{ (applications | selectattr('name', 'search', item) | list | first) }}"
+      loop: "{{ applications_names }}"
 
   roles:
     # Packages / Brew
-    #- setup-tooling
+    - setup-tooling
     # Shells
-    - bash
-    - zsh
+    # - bash
+    # - zsh
     # Language Manager
     #- rvm
     #- gvm
