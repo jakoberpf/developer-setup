@@ -59,7 +59,7 @@ jobs:
       #     ansible-galaxy install -r requirements.yml
 
       - name: Test the playbook.
-        run: setup.mac.sh
+        run: ./setup.mac.sh
         env:
           ANSIBLE_FORCE_COLOR: '1'
           ANSIBLE_PASSWORD: 'super-secure'
