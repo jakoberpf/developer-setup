@@ -58,13 +58,11 @@ jobs:
       #   run: |
       #     ansible-galaxy install -r requirements.yml
 
-      - name: Test the playbook's syntax.
-        run: ansible-playbook setup.yaml --syntax-check
-
       - name: Test the playbook.
-        run: ansible-playbook main.yml
+        run: setup.mac.sh
         env:
           ANSIBLE_FORCE_COLOR: '1'
+          ANSIBLE_PASSWORD: 'super-secure'
 
       # - name: Idempotence check.
       #   run: |
