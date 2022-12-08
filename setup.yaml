@@ -5,9 +5,12 @@
     - applications.yaml
 
   pre_tasks:
-    - include_vars: "{{ item }}"
-      with_fileglob:
-        - "{{ playbook_dir }}/config.yaml"
+
+    - command: "sh -c 'find {{ playbook_dir }}/config*.yaml'"
+      register: configs
+    - include_vars:
+        file: "{{ item }}"
+      loop: "{{ configs.stdout_lines }}"
   
     - debug:
         msg: "{{ applications | select('match', '^(eth|wlan)[0-9]+') | list }}"
