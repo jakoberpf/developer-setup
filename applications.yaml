@@ -1,0 +1,38 @@
+# https://www.tailored.cloud/devops/how-to-filter-and-map-lists-in-ansible/
+
+distributions:
+  - Darwin
+  - Debian
+
+applications:
+  - name: awscli
+    descriptions: The amazon web Service Commandline Interface
+    distros:
+      - distro: Darwin
+        type: brew
+        brew:
+          name: awscli
+          cask: false
+      - distro: Debian
+        type: apt
+        apt:
+          name: awscli
+  - name: lens
+    descriptions: The kubernetes IDE
+    distros:
+      - distro: Darwin
+        type: brew
+        brew:
+          name: lens
+          cask: false
+      - distro: Debian
+        type: role
+        role:
+          name: jakoberpf/setup-app-lens
+          version: 0.0.1
+  - name: bashhub
+    descriptions: A client for the bashhub commandline history server
+    # https://github.com/rcaloras/bashhub-client
+  - name: atom
+    descriptions: "A minimal IDE"
+    # https://linuxize.com/post/how-to-install-atom-text-editor-on-ubuntu-20-04/

@@ -2,20 +2,41 @@
 - hosts: localhost
   vars_files:
     - default.config.yaml
+    - applications.yaml
 
   pre_tasks:
-    - include_vars: "{{ item }}"
-      with_fileglob:
-        - "{{ playbook_dir }}/config.yaml"
+
+    - command: "sh -c 'find {{ playbook_dir }}/config*.yaml'"
+      register: configs
+    - include_vars:
+        file: "{{ item }}"
+      loop: "{{ configs.stdout_lines }}"
+  
+    - debug:
+        msg: "{{ applications | map(attribute='name') }}"
+
+    - name:
+      set_fact:
+        applications_names: "{{ applications | map(attribute='name') }}"
+
+    - debug:
+        msg: "{{ applications_names }}"
+
+    - debug:
+        msg: "{{ (applications | selectattr('name', 'search', 'awscli') | list | first).descriptions }}"
+
+    - debug:
+        msg: "{{ (applications | selectattr('name', 'search', item) | list | first) }}"
+      loop: "{{ applications_names }}"
 
   roles:
     # Packages / Brew
     - setup-tooling
     # Shells
-    - bash
-    - zsh
+    # - bash
+    # - zsh
     # Language Manager
-    - rvm
-    - gvm
-    - nvm
-    - jenv
+    #- rvm
+    #- gvm
+    #- nvm
+    #- jenv

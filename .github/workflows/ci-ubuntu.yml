@@ -1,0 +1,47 @@
+---
+name: Ubuntu
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  # schedule:
+  #   - cron: "0 5 * * 4"
+
+jobs:
+
+  integration:
+    name: Integration
+    concurrency: ubuntu
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-22.04
+          - ubuntu-20.04
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Perpare test environment.
+        run: |
+          cp default.config.yaml config.yaml
+
+      # - name: Set up the test environment.
+      #   run: |
+      #     ansible-galaxy install -r requirements.yml
+
+      - name: Test the playbook.
+        run: ./setup.ubuntu.sh
+        env:
+          ANSIBLE_FORCE_COLOR: '1'
+          ANSIBLE_PASSWORD: 'super-secure'
+
+      # - name: Idempotence check.
+      #   run: |
+      #     idempotence=$(mktemp)
+      #     ansible-playbook main.yml | tee -a ${idempotence}
+      #     tail ${idempotence} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
+      #   env:
+      #     ANSIBLE_FORCE_COLOR: '1'

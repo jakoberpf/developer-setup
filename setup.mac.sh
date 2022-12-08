@@ -59,7 +59,11 @@ function check_ansible {
 print_bold "[setup] Running ansible provisioning... "
 check_ansible
 
-ansible-playbook setup.yaml --ask-become-pass # -e ansible_password='{{ lookup("env", "ANSIBLE_PASSWORD") }}'
+if [ -n "$ANSIBLE_PASSWORD" ]; then
+  ansible-playbook setup.yaml -e ansible_password='{{ lookup("env", "ANSIBLE_PASSWORD") }}'
+elif [ ! -n "$ANSIBLE_PASSWORD" ]; then
+  ansible-playbook setup.yaml --ask-become-pass
+fi
 
 echo
 print_bold "[setup] Your Mac is setup"
