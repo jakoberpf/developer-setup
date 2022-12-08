@@ -1,6 +1,6 @@
 # developer-setup
 
-[![Lint & Test][badge-gh-actions]][link-gh-actions] [![MacOS][badge-gh-actions]][link-gh-actions] [![Ubuntu][badge-gh-actions]][link-gh-actions]
+![Lint & Test](https://github.com/jakoberpf/my-setup/actions/workflows/ci-lint.yml/badge.svg) ![MacOS](https://github.com/jakoberpf/my-setup/actions/workflows/ci-macos.yml/badge.svg) ![Ubuntu](https://github.com/jakoberpf/my-setup/actions/workflows/ci-ubuntu.yml/badge.svg) 
 
 This playbook installs and configures macOS or Ubuntu with development tools.
 
