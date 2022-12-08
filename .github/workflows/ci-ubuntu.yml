@@ -13,6 +13,7 @@ jobs:
 
   integration:
     name: Integration
+    concurrency: ubuntu
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
