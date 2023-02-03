@@ -68,7 +68,7 @@ elif [ ! -n "$GITHUB_USERNAME" ]; then
   read GITHUB_USERNAME
 fi
 
-if [ -n "$OPS_GGITHUB_TOKEN" ]; then
+if [ -n "$OPS_GITHUB_TOKEN" ]; then
   GITHUB_TOKEN=$OPS_GITHUB_TOKEN
 elif [ ! -n "$GITHUB_TOKEN" ]; then
   echo "Enter Your Github Token: "
