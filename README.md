@@ -67,3 +67,5 @@ Packages:
 
 - Make visual documentation like <https://sourabhbajaj.com/mac-setup/> as github pages
 - Setup git precommit hook for cleaning script with ``sed -i -e 's/\r$//' <scriptname>.sh``
+- https://github.com/geerlingguy/mac-dev-playbook/blob/master/README.md
+- https://docs.ansible.com/ansible/latest/collections/ansible/builtin/include_role_module.html
