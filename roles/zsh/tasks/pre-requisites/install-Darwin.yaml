@@ -25,3 +25,30 @@
 - name: "[zsh] install oh-my-zsh"
   shell: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"'
   when: not oh_my_zsh_dir.stat.exists
+
+- name: "[zsh] check if oh-my-zsh zsh-syntax-highlighting is already installed"
+  stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+  register: oh_my_zsh_plugin_dir_highlighting
+
+- name: "[zsh] install oh-my-zsh zsh-syntax-highlighting"
+  shell: "git clone https://github.com/zsh-users/zsh-syntax-highlighting.git {{ ansible_env.HOME }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+  when: not oh_my_zsh_plugin_dir_highlighting.stat.exists
+
+- name: "[zsh] check if oh-my-zsh zsh-completions is already installed"
+  stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh/plugins/zsh-completions"
+  register: oh_my_zsh_plugin_dir_completions
+
+- name: "[zsh] install oh-my-zsh zsh-completions"
+  shell: "git clone https://github.com/zsh-users/zsh-completions.git {{ ansible_env.HOME }}/.oh-my-zsh/plugins/zsh-completions"
+  when: not oh_my_zsh_plugin_dir_completions.stat.exists
+
+- name: "[zsh] check if oh-my-zsh zsh-autosuggestions is already installed"
+  stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh/plugins/zsh-autosuggestions"
+  register: oh_my_zsh_plugin_dir_autosuggestions
+
+- name: "[zsh] install oh-my-zsh zsh-autosuggestions"
+  shell: "git clone https://github.com/zsh-users/zsh-autosuggestions.git {{ ansible_env.HOME }}/.oh-my-zsh/plugins/zsh-autosuggestions"
+  when: not oh_my_zsh_plugin_dir_autosuggestions.stat.exists
