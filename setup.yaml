@@ -33,10 +33,10 @@
     # Packages / Brew
     - setup-tooling
     # Shells
-    # - bash
-    # - zsh
+    - bash
+    - zsh
     # Language Manager
-    #- rvm
-    #- gvm
-    #- nvm
-    #- jenv
+    # - rvm
+    # - gvm
+    - nvm
+    # - jenv
